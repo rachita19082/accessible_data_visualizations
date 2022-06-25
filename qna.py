@@ -28,13 +28,11 @@ class QnA:
     def handle_q1(self, vars):
         mean = self.df[vars].mean()
         answer = f'The mean {vars[0]} is {mean[0]}.'
-        print(answer)
         return answer
     
     def handle_q2(self, vars):
         std = self.df[vars].std()
         answer = f'The standard deviation of {vars[0]} is {std[0]}.'
-        print(answer)
         return answer
     
     def handle_q3(self):
@@ -46,7 +44,6 @@ class QnA:
             var1 = row[0]
             var2 = row[1]
         answer = f'The variables with highest correlation are {var1} and {var2} and their correlation is {sorted_mat[0]}.'
-        print(answer)
         return answer
 
     def handle_q4(self, vars):
@@ -60,7 +57,6 @@ class QnA:
             answer = f'There is Strong Negative Correlation between {vars[0]} and {vars[1]}.' 
         else:
             answer = f'There is Weak Negative Correlation between {vars[0]} and {vars[1]}.' 
-        print(answer)
         return answer
     
     def handle_q5(self, vars):
@@ -71,7 +67,12 @@ class QnA:
         percentage = (df2.shape[0]/self.df.shape[0])*100
         percentage = round(percentage, 2)
         answer = f'The percentage of outliers in {vars[0]} is {percentage}.'
-        print(answer)
         return answer
 
-
+df = pd.read_csv('order_details.csv')
+qna = QnA(df)
+qna.get_answer(1, ['Amount'])
+qna.get_answer(2, ['Amount'])
+qna.get_answer(3)
+qna.get_answer(4, ['Amount', 'Profit'])
+qna.get_answer(5, ['Amount', 'Profit'])
