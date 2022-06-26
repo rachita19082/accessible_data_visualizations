@@ -2,7 +2,7 @@ import pandas as pd
 
 
 class Summary:
-	def __init__(self, dataframe,graph = 'Bar Graph'):
+	def __init__(self, dataframe,graph = 'Bar Plot'):
 		self.df= dataframe
 
 	def get_summary(self):
