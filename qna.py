@@ -28,13 +28,21 @@ class QnA:
         return answer
 
     def handle_q1(self, vars):
-        mean = self.df[vars].mean()
-        answer = f'The mean {vars[0]} is {mean[0]}.'
+        answer = ''
+        classes = self.df[self.class_name].unique()
+        for category in classes:
+            df_class = self.df.loc[self.df[self.class_name] == category]
+            mean = df_class[vars].mean()
+            answer = f'{answer}The mean {vars[0]} for category {category} is {mean[0]}.\n'
         return answer
     
     def handle_q2(self, vars):
-        std = self.df[vars].std()
-        answer = f'The standard deviation of {vars[0]} is {std[0]}.'
+        answer = ''
+        classes = self.df[self.class_name].unique()
+        for category in classes:
+            df_class = self.df.loc[self.df[self.class_name] == category]
+            std = df_class[vars].std()
+            answer = f'{answer}The standard deviation of {vars[0]} for category {category} is {std[0]}.\n'
         return answer
     
     def handle_q3(self):
