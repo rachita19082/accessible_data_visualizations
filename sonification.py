@@ -16,9 +16,6 @@ class Sonification:
     
 
     def make_sonifications(self, vars = []):
-        if (len(vars)) == 0:
-            return "Enter the name of variables on X axis and Y axis."
-        
         x_axis_name = vars[0]
         y_axis_name = vars[1]
         
