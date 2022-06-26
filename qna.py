@@ -10,8 +10,9 @@ class QnA:
         5: 'How many outliers are there in X?'
     }
 
-    def __init__(self, df):
+    def __init__(self, df, class_name):
         self.df = df
+        self.class_name = class_name
     
     def get_answer(self, q_id, vars=[]):
         if q_id==1:
@@ -24,6 +25,7 @@ class QnA:
             answer = self.handle_q4(vars)
         elif q_id==5:
             answer = self.handle_q5(vars)
+        return answer
 
     def handle_q1(self, vars):
         mean = self.df[vars].mean()
@@ -47,32 +49,31 @@ class QnA:
         return answer
 
     def handle_q4(self, vars):
-        corr = df[vars[0]].corr(df[vars[1]])
-
-        if corr>0 and abs(corr)>0.5:
-            answer = f'There is Strong Positive Correlation between {vars[0]} and {vars[1]}.'
-        elif corr>0 and abs(corr)<=0.5:
-            answer = f'There is Weak Positive Correlation between {vars[0]} and {vars[1]}.' 
-        elif corr<0 and abs(corr)>0.5:
-            answer = f'There is Strong Negative Correlation between {vars[0]} and {vars[1]}.' 
-        else:
-            answer = f'There is Weak Negative Correlation between {vars[0]} and {vars[1]}.' 
+        answer = ''
+        classes = self.df[self.class_name].unique()
+        for category in classes:
+            df_class = self.df.loc[self.df[self.class_name] == category]
+            corr = df_class[vars[0]].corr(df_class[vars[1]])
+            if corr>0 and abs(corr)>0.5:
+                answer = f'{answer}There is Strong Positive Correlation between {vars[0]} and {vars[1]} for category {category}.\n'
+            elif corr>0 and abs(corr)<=0.5:
+                answer = f'{answer}There is Weak Positive Correlation between {vars[0]} and {vars[1]} for category {category}.\n' 
+            elif corr<0 and abs(corr)>0.5:
+                answer = f'{answer}There is Strong Negative Correlation between {vars[0]} and {vars[1]} for category {category}.\n' 
+            else:
+                answer = f'{answer}There is Weak Negative Correlation between {vars[0]} and {vars[1]} for category {category}.\n'
         return answer
     
     def handle_q5(self, vars):
-        Q1 = self.df[vars].quantile(0.25)
-        Q3 = self.df[vars].quantile(0.75)
-        IQR = Q3 - Q1
-        df2 = self.df[~((df[vars] < (Q1 - 1.5 * IQR)) |(self.df[vars] > (Q3 + 1.5 * IQR))).any(axis=1)]
-        percentage = (df2.shape[0]/self.df.shape[0])*100
-        percentage = round(percentage, 2)
-        answer = f'The percentage of outliers in {vars[0]} is {percentage}.'
+        answer = ''
+        classes = self.df[self.class_name].unique()
+        for category in classes:
+            df_class = self.df.loc[self.df[self.class_name] == category]
+            Q1 = df_class[vars].quantile(0.25)
+            Q3 = df_class[vars].quantile(0.75)
+            IQR = Q3 - Q1
+            df2 = df_class[~((df_class[vars] < (Q1 - 1.5 * IQR)) |(df_class[vars] > (Q3 + 1.5 * IQR))).any(axis=1)]
+            percentage = (df2.shape[0]/df_class.shape[0])*100
+            percentage = round(percentage, 2)
+            answer = f'{answer}The percentage of outliers in {vars[0]} is {percentage} for category {category}.\n'
         return answer
-
-df = pd.read_csv('order_details.csv')
-qna = QnA(df)
-qna.get_answer(1, ['Amount'])
-qna.get_answer(2, ['Amount'])
-qna.get_answer(3)
-qna.get_answer(4, ['Amount', 'Profit'])
-qna.get_answer(5, ['Amount', 'Profit'])
