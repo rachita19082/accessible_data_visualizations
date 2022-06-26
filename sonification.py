@@ -2,6 +2,9 @@
 Data Sonification Class
 """
 
+from os import environ
+environ['PYGAME_HIDE_SUPPORT_PROMPT'] = '1'
+
 import pandas as pd
 import matplotlib.pyplot as plt
 from audiolazy import str2midi 
@@ -10,7 +13,7 @@ import pygame
 from utils import map_value
 
 class Sonification:
-    def __init__(self, dataframe, class_name, graph = 'Line Graph'):
+    def __init__(self, dataframe, class_name, graph = 'Line Plot'):
         self.dataframe = dataframe
         self.class_name = class_name
     
@@ -61,6 +64,8 @@ class Sonification:
             filename = class_name
             with open(filename + '.mid', "wb") as f:
                 my_midi_file.writeFile(f)
+
+        return no_of_classes
 
 
     def play_plot(self, class_name):
