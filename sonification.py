@@ -13,7 +13,7 @@ import pygame
 from utils import map_value
 
 class Sonification:
-    def __init__(self, dataframe, class_name, graph = 'Line Graph'):
+    def __init__(self, dataframe, class_name, graph = 'Line Plot'):
         self.dataframe = dataframe
         self.class_name = class_name
     
@@ -23,7 +23,7 @@ class Sonification:
         y_axis_name = vars[1]
         
         no_of_classes = self.dataframe[self.class_name].unique()
-        
+
         for class_name in no_of_classes:
             y_axis = self.dataframe[self.dataframe[self.class_name] == class_name][y_axis_name].values
             x_axis = self.dataframe[self.dataframe[self.class_name] == class_name][x_axis_name].values
