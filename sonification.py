@@ -1,30 +1,32 @@
+"""
+Data Sonification Class
+"""
+
 import pandas as pd
 import matplotlib.pyplot as plt
 from audiolazy import str2midi 
 from midiutil import MIDIFile 
 import pygame
-
-
-def map_value(value, min_value, max_value, min_result, max_result):
-        result = min_result + (value - min_value)/(max_value - min_value)*(max_result - min_result) + 0.2
-        return result
-
+from utils import map_value
 
 class Sonification:
-    def __init__(self, dataframe, class_name, y_axis, x_axis, graph = 'Line Graph'):
+    def __init__(self, dataframe, class_name, graph = 'Line Graph'):
         self.dataframe = dataframe
-        self.class_name = 'State'
-        self.y_axis = y_axis
-        self.x_axis = x_axis
-
+        self.class_name = class_name
     
 
-    def make_sonifications(self):
+    def make_sonifications(self, vars = []):
+        if (len(vars)) == 0:
+            return "Enter the name of variables on X axis and Y axis."
+        
+        x_axis_name = vars[0]
+        y_axis_name = vars[1]
+        
         no_of_classes = self.dataframe[self.class_name].unique()
 
         for class_name in no_of_classes:
-            y_axis = self.dataframe[self.dataframe[self.class_name] == class_name][self.y_axis].values
-            x_axis = self.dataframe[self.dataframe[self.class_name] == class_name][self.x_axis].values
+            y_axis = self.dataframe[self.dataframe[self.class_name] == class_name][y_axis_name].values
+            x_axis = self.dataframe[self.dataframe[self.class_name] == class_name][x_axis_name].values
 
             n_impacts = len(x_axis)
 
