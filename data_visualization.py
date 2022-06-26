@@ -7,17 +7,17 @@ class Visualization:
         self.data = data
         self.plotType = plotType
 
-    def visualize(self):
+    def visualize(self, X= None, Y=None, category=None):
         if(self.plotType == "Bar Plot"):
-            self.barPlot_visualize()
+            self.barPlot_visualize(X, Y)
         elif(self.plotType == "Line Plot"):
-            self.linePlot_visualize()
+            self.linePlot_visualize(X, Y, category)
         elif(self.plotType == "Scatter Plot"):
-            self.scatterPlot_visualize()
+            self.scatterPlot_visualize(X, Y, category)
         elif(self.plotType == "Heat Map"):
             self.heatMap_visualize()
         elif(self.plotType == "Violin Plot"):
-            self.violinPlot_visualize()
+            self.violinPlot_visualize(X, Y)
         else:
             print("Plot is not supported. Supported Plots: Bar Plot, Line Plot, Scatter Plot, Heat Map, Scatter Plot")
 
