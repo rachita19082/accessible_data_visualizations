@@ -13,19 +13,20 @@ def main():
         if mode == 1:
             utils.print_format_options()
             viz_type, class_name, var_x, var_y = utils.prompt_input_sonification()
-            #print categories formed
-            #input - category name
             if viz_type == 1:
                 sonify = Sonification(df, class_name)
                 all_categories = sonify.make_sonifications(vars = [var_x, var_y])
-                # exit_code = utils.print_sonification_categories(all_categories)
-                # while True:
-                #     category = int(input('Select category: '))
-                #     if category == exit_code:
-                #         break
-                # sonify.play_plot('West Bengal')
+                exit_code = utils.print_sonification_categories(all_categories)
+                while True:
+                    category = all_categories[int(input('Select category: '))-1]
+                    print(category)
+                    if category == exit_code:
+                        break
+                    sonify.play_plot(category)
         elif mode == 2:
-            pass
+            summary = Summary(df)
+            summ = summary.get_summary()
+            print(summ)
         elif mode == 3:
             utils.print_questions()
             q_id = int(input('Select question: '))
