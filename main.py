@@ -1,5 +1,6 @@
 import pandas as pd
 from sonification import Sonification
+from summary import Summary
 from qna import QnA
 import utils
 
