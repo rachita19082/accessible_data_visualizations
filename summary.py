@@ -12,5 +12,5 @@ class Summary:
     mode=df1.mode()
     max=df1.max()
     min=df1.min()
-    answer='The mean of ' + name + ' is '+ str(mean).split()[1] + '.\nThe median of ' + name + ' is ' +str(median).split()[1] + '.\nThe mode of ' + name + ' is '+ str(mode).split()[1] + '.\nThe maximum and minimum value of ' + name + ' is '+ str(max).split()[1] +' and '+ str(min).split()[1]+' respectively.'
+    answer='\nThe mean of ' + name + ' is '+ str(mean).split()[1] + '.\nThe median of ' + name + ' is ' +str(median).split()[1] + '.\nThe mode of ' + name + ' is '+ str(mode).split()[1] + '.\nThe maximum and minimum value of ' + name + ' is '+ str(max).split()[1] +' and '+ str(min).split()[1]+' respectively.\n'
     return answer
