@@ -11,7 +11,7 @@ def map_value(value, min_value, max_value, min_result, max_result):
     return result
 
 def print_mode_options():
-    mode_options = 'How would you like to interact with the data visualization?\n1: Listen to sonified version of the visualization.\n2: Get summary of the information contained in the visualization.\n3: Interact with the visualization through questions.\n4: Exit'
+    mode_options = 'How would you like to interact with the data visualization?\n1: Listen to sonified version.\n2: Get summary of the information contained.\n3: Interact through questions.\n4: Exit'
     speech = gTTS(text=mode_options, lang=language, slow=False)
     speech.save('speech.mp3')
     playsound('speech.mp3')
@@ -62,7 +62,6 @@ def prompt_input_qna(q_id):
 
 def print_sonification_categories(categories):
     all_categories = 'For which category would you like to hear the sonification?'
-    print('For which category would you like to hear the sonification?')
     i = 1
     for category in categories:
         all_categories = f'{all_categories}\n{i}: {category}'
