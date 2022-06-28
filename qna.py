@@ -28,20 +28,22 @@ class QnA:
         return answer
 
     def handle_q1(self, vars):
-        answer = ''
+        answer = '\n'
         classes = self.df[self.class_name].unique()
         for category in classes:
             df_class = self.df.loc[self.df[self.class_name] == category]
             mean = df_class[vars].mean()
+            mean = round(mean, 2)
             answer = f'{answer}The mean {vars[0]} for category {category} is {mean[0]}.\n'
         return answer
     
     def handle_q2(self, vars):
-        answer = ''
+        answer = '\n'
         classes = self.df[self.class_name].unique()
         for category in classes:
             df_class = self.df.loc[self.df[self.class_name] == category]
             std = df_class[vars].std()
+            std = round(std, 2)
             answer = f'{answer}The standard deviation of {vars[0]} for category {category} is {std[0]}.\n'
         return answer
     
@@ -53,11 +55,11 @@ class QnA:
         for row in sorted_mat.index:
             var1 = row[0]
             var2 = row[1]
-        answer = f'The variables with highest correlation are {var1} and {var2} and their correlation is {sorted_mat[0]}.'
+        answer = f'The variables with highest correlation are {var1} and {var2} and their correlation is {round(sorted_mat[0], 2)}.'
         return answer
 
     def handle_q4(self, vars):
-        answer = ''
+        answer = '\n'
         classes = self.df[self.class_name].unique()
         for category in classes:
             df_class = self.df.loc[self.df[self.class_name] == category]
@@ -73,7 +75,7 @@ class QnA:
         return answer
     
     def handle_q5(self, vars):
-        answer = ''
+        answer = '\n'
         classes = self.df[self.class_name].unique()
         for category in classes:
             df_class = self.df.loc[self.df[self.class_name] == category]
