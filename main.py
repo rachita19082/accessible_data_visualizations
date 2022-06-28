@@ -9,15 +9,14 @@ from playsound import playsound
 
 def main():
     language = 'en'
-    intro_speech = gTTS(text='Enter path of CSV file', lang=language, slow=False)
-    intro_speech.save('intro.mp3')
-    playsound('intro.mp3')
+    utils.play_text('Enter path of CSV file')
     filepath = input('Enter path of CSV file: ')
     df = pd.read_csv(filepath)
     viz = Visualization(df)
 
     while True:
         utils.print_mode_options()
+        utils.play_text('Select mode')
         mode = int(input('Select mode: '))
         if mode == 1:
             utils.print_format_options()
@@ -26,10 +25,11 @@ def main():
                 viz.visualize('Line Plot', var_x, var_y, class_name)
                 sonify = Sonification(df, class_name)
                 all_categories = sonify.make_sonifications(vars = [var_x, var_y])
-                exit_code = utils.print_sonification_categories(all_categories)
+                exit_code, categories = utils.print_sonification_categories(all_categories)
                 while True:
+                    utils.play_text('Select category')
                     category_int = int(input('Select category: '))
-                    if category == exit_code:
+                    if category_int == exit_code:
                         break
                     category = all_categories[category_int-1]
                     sonify.play_plot(category)
@@ -40,12 +40,11 @@ def main():
                 viz.visualize('Bar Plot', class_name, var_x)
                 summary = Summary(df)
                 summ = summary.get_summary()
-                summ_speech = gTTS(text=summ, lang=language, slow=False)
-                summ_speech.save('summary_speech.mp3')
-                playsound('summary_speech.mp3')
+                utils.play_text(summ)
                 print(summ)
         elif mode == 3:
             utils.print_questions()
+            utils.play_text('Select question')
             q_id = int(input('Select question: '))
             class_name, vars = utils.prompt_input_qna(q_id)
             if q_id == 3:
@@ -56,9 +55,7 @@ def main():
                 viz.visualize('Violin Plot', class_name, vars[0])
             qna = QnA(df, class_name)
             answer = qna.get_answer(q_id, vars)
-            answer_speech = gTTS(text=answer, lang=language, slow=False)
-            answer_speech.save('answer_speech.mp3')
-            playsound('answer_speech.mp3')
+            utils.play_text(answer)
             print(answer)
         elif mode == 4:
             break
