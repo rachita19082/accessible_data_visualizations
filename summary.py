@@ -6,6 +6,7 @@ class Summary:
     def __init__(self, dataframe,graph = 'Bar Plot'):
         self.df = dataframe
 
+
     def get_individual_summary(self, df1):
         mean = df1.mean()
         name = str(mean).split()[0]
