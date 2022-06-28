@@ -6,7 +6,8 @@ class Summary:
     def __init__(self, dataframe,graph = 'Bar Plot'):
         self.df = dataframe
 
-    def get_Individual_Summary(self, df1):
+
+    def get_individual_summary(self, df1):
         mean = df1.mean()
         name = str(mean).split()[0]
         median = df1.median()
@@ -26,6 +27,6 @@ class Summary:
                 if (not (isinstance(x, int))) and (not (isinstance(x, float))) :
                     flag = False
             if flag:
-                answer=answer+'\n'+self.get_Individual_Summary(df1)
+                answer=answer+'\n'+self.get_individual_summary(df1)
             i += 1
         return answer        

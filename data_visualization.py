@@ -56,8 +56,6 @@ class Visualization:
         corrMatrix = dataset.corr()
         p= sns.heatmap(corrMatrix,linewidths=linewidths,linecolor=linecolor, cmap= color, annot=True)
         p.set_title("Heat Map", fontsize = 70)
-        p.set_title(self.plotType, fontsize = 70)
-        plt.legend(markerscale=5)
         plt.show()
 
     def violinPlot_visualize(self, X, Y):
