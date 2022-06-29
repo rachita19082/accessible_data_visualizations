@@ -6,7 +6,12 @@ Acc-Viz is a utility which makes data visualizations more accessible for the par
 
 ### Use Case
 
-(Include problem statement and current solutions)
+Data Visualization, such as statistical charts, pie charts, graphs, plots etc., helps effectively represent, analyze and explore data. Also, it identifies and shares meaningful data-driven insights that are hard to decipher by just looking at the data values. 
+
+People with visual disabilities face many challenges in accessing data visualizations. Data for many important matters such as health, election outcomes and economic indications are presented in the form of graphs and plots. But, interpreting insights from such data visualizations becomes an incredibly difficult task for people with low vision or colourblindness. The visualization research community has not paid enough attention to the needs of people with disabilities. For instance, W3C guidelines recommend that online graphics provide alt text and an alternative text description. In practice, however, alt text is frequently missing or inadequate. And even though many figures provide detailed text descriptions, they are not enough for in-depth data analysis. Screen readers are also unable to give a detailed overview or summary of the complex data relationships represented through charts. 
+
+There is a pressing need to prioritize accessibility and inclusive approaches while employing visualizations adequately.
+
 
 ### Methodology
 
