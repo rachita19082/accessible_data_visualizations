@@ -50,6 +50,9 @@ Some of the questions available are:
 
 The summary mode offers a verbal summary of the information contained in the visualization.
 
+#### Slack Integration
+
+For users who only need to interact with the data visualization and gain insights from it, we have created a slack bot acc-viz which provides all the above functionality.
 
 ## Getting Started
 
