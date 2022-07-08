@@ -1,10 +1,14 @@
 # Acc-Viz
 
-Acc-Viz is a utility which makes data visualizations more accessible for the partially sighted, visually impaired and blind.
+Acc-Viz is a utility which makes data visualizations more accessible for the partially sighted, visually impaired and blind. This video demonstrates the basic functions on Acc-Viz.
+https://user-images.githubusercontent.com/55682355/177938225-5c8f76ee-2fa9-4c79-a261-4db9fc3a9f70.mp4
 
 ## About the Project
 
 ### Use Case
+
+
+
 
 Data Visualization, such as statistical charts, pie charts, graphs, plots etc., helps effectively represent, analyze and explore data. Also, it identifies and shares meaningful data-driven insights that are hard to decipher by just looking at the data values. 
 
